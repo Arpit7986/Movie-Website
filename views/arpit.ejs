@@ -1,0 +1,249 @@
+<%- include('./partials/Boilerplate') %>
+<%- include('./partials/Navbar') %>
+<style>
+  body {
+        background-color: black;
+        color: white; /* Adding white text color for better contrast */
+    }
+    .container {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .search {
+        margin-bottom: 20px;
+    }
+    .input_text {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    .results {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .movie {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin: 10px;
+        padding: 10px;
+        text-align: center;
+        width: 200px;
+        cursor: pointer;
+    }
+    .movie img {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+    .movie h3 {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+    .favorites-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        width: 300px;
+        max-height: 400px; /* Set max-height for scrollability */
+        overflow-y: auto; /* Enable vertical scroll */
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .favorites-title {
+        margin-bottom: 10px;
+    }
+    .favorite-item {
+        margin-bottom: 5px;
+    }
+    .favorites-button {
+        position: fixed;
+        right: 20px;    
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        cursor: pointer;
+    }
+    .favorite-image {
+        width: 80px; /* Adjust width as needed */
+        height: auto; /* Maintain aspect ratio */
+    }
+    .favorites-button{
+        background-color: blue;
+    }
+    .review{
+    border-style: solid;
+    border-width: 90px 150px 80px 150px;
+    border-color: white;
+}
+.review_box{
+        margin-top: 4%;
+        display: grid;
+        grid-template-columns: repeat(auto-fill,minmax(350px,auto));
+        grid-auto-rows: minmax(300px,auto);
+        row-gap: 20px;
+        column-gap: 30px ;            
+}
+.add-to-favorite{
+    background-color: blue;
+    border-radius: 5px;
+    border: none;
+    color: white;
+}
+.view-details{
+    background-color: blue;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    margin: 15px;
+}
+</style>
+
+<button class="favorites-button">Favorites</button>
+<div class="container">
+    
+    <div class="search">
+        <input style="width: 450px;" type="text" id="search_text" class="input_text" placeholder="Search for a movie...">
+    </div>
+    <h1>Movies List</h1>
+    <div class="results" id="results"></div>
+    <br><br><br><br><br>
+</div>
+<div class="review">
+    <p style="font-size: 45px;display: flex;justify-content: center;align-items: center;font-weight: 700;color: #262B2C;margin-top: 3%;">Our Customers speak for us</p>
+    <div class="review_box">
+        <div class="feedback">
+            <p style="margin: 8% 0% 0% 8%"><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i></p>
+            <p style="margin: 8% 0% 0% 8%;font-size: 18px;font-weight: 600;">“Felis semper duis massa scelerisque</p>
+            <p style="margin: 3% 0% 0% 8%;font-size: 18px;font-weight: 600;">ac amet porttitor ac tellus venenatis</p>
+            <p style="margin: 3% 0% 0% 8%;font-size: 18px;font-weight: 600;">aliquam varius mauris integer”</p>
+            <img style="border-radius: 50%;margin: 8% 0% 0% 8%;" src="https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-store-customer-avatar-image-3.jpg" alt="">
+            <p style="letter-spacing: 2px;margin: 0% 0% 0% 25%;position: relative;bottom: 11%;color: #6e7051;">JULIA KEYS</p>
+        </div>
+        <div class="feedback">
+            <p style="margin: 8% 0% 0% 8%"><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i></p>
+            <p style="margin: 8% 0% 0% 8%;font-size: 18px;font-weight: 600;">“Non malesuada fringilla non varius </p>
+            <p style="margin: 3% 0% 0% 8%;font-size: 18px;font-weight: 600;">odio in id pellentesque aliquam</p>
+            <p style="margin: 3% 0% 0% 8%;font-size: 18px;font-weight: 600;">volutpat sapien faucibus ”</p>
+            <img style="border-radius: 50%;margin: 8% 0% 0% 8%;" src="https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-store-customer-avatar-image-2.jpg" alt="">
+            <p style="letter-spacing: 2px;margin: 0% 0% 0% 25%;position: relative;bottom: 11%;color: #6e7051;">LUIS ADRIAN</p>
+        </div>
+        <div class="feedback">
+            <p style="margin: 8% 0% 0% 8%"><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i><i style="color:#f6aa28;"class="fa-solid fa-star"></i></p>
+            <p style="margin: 8% 0% 0% 8%;font-size: 18px;font-weight: 600;">“Tortor suspendisse tincidunt</p>
+            <p style="margin: 3% 0% 0% 8%;font-size: 18px;font-weight: 600;">accumsan platea pellentesque hac.”</p>
+            <img style="border-radius: 50%;margin: 8% 0% 0% 8%;" src="https://websitedemos.net/recycled-shoe-store-04/wp-content/uploads/sites/983/2021/11/recycled-shoe-store-customer-avatar-image-1.jpg" alt="">
+            <p style="letter-spacing: 2px;margin: 0% 0% 0% 25%;position: relative;bottom: 11%;color: #6e7051;">MARIA ANNA</p>
+        </div>
+    </div>
+    <p style="display: flex;justify-content: center;align-items: center;margin-top: 6%;font-size: 16px;color: #97989B;font-weight: 600;">4.8 average rating from 1814 reviews</p>
+</div>
+<!-- Favorites List -->
+<div id="favorites" class="favorites-container" style="display: none;">
+    <span class="close-button">&times;</span>
+    <h2 class="favorites-title">Your Favorite List</h2>
+    <div id="favoritesList"></div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const searchtext = document.getElementById('search_text');
+    const resultsContainer = document.getElementById('results');
+    const favoritesContainer = document.getElementById('favorites');
+    const favoritesList = document.getElementById('favoritesList');
+    const favoritesButton = document.querySelector('.favorites-button');
+    const closeButton = document.querySelector('.close-button');
+
+    // Favorites list
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+
+    searchtext.addEventListener('input', async (search) => {
+        const query = search.target.value.trim();
+        if (query.length < 3) {
+            resultsContainer.innerHTML = '';
+            return;
+        }
+        const URL = `https://omdbapi.com/?s=${query}&page=1&apikey=4228889a`;
+        try {
+            const res = await fetch(URL);
+            const data = await res.json();
+            console.log(data);
+            if (data.Response === "True") {
+                displayResults(data.Search);
+            } else {
+                resultsContainer.innerHTML = '<p>No results found</p>';
+            }
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            resultsContainer.innerHTML = '<p>Error fetching data</p>';
+        }
+    });
+
+    function displayResults(movies) {
+        resultsContainer.innerHTML = ''; // Clear previous results
+        movies.forEach(movie => {
+            const movieElement = document.createElement('div');
+            movieElement.classList.add('movie');
+            const movieImage = document.createElement('img');
+            movieImage.src = movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/200x300';
+            movieImage.alt = movie.Title;
+            movieElement.appendChild(movieImage);
+            movieElement.innerHTML += `
+                <h3>${movie.Title}</h3>
+                <p>${movie.Year}</p>
+                <button class="view-details" data-imdb-id="${movie.imdbID}">View Details</button>
+                <br>
+                <button class="add-to-favorite">Add to Favorites</button>
+            `;
+            movieElement.querySelector('.add-to-favorite').addEventListener('click', (event) => {
+                event.stopPropagation();
+                addToFavorites(movie);
+            });
+            movieElement.querySelector('.view-details').addEventListener('click', () => {
+                window.location.href = `/movie-details.html?id=${movie.imdbID}`;
+            });
+            resultsContainer.appendChild(movieElement);
+        });
+    }
+
+    function addToFavorites(movie) {
+        favorites.push(movie);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+        displayFavorites();
+    }
+
+    function displayFavorites() {
+        favoritesList.innerHTML = '';
+        favorites.forEach(movie => {
+            const favoriteElement = document.createElement('div');
+            const movieImage = document.createElement('img');
+            movieImage.src = movie.Poster !== 'N/A' ? movie.Poster : 'https://via.placeholder.com/200x300';
+            movieImage.alt = movie.Title;
+            movieImage.classList.add('favorite-image');
+            favoriteElement.appendChild(movieImage);
+            favoriteElement.innerHTML += `
+                <p>${movie.Title}</p>
+            `;
+            favoritesList.appendChild(favoriteElement);
+        });
+    }
+
+    favoritesButton.addEventListener('click', () => {
+        favoritesContainer.style.display = favoritesContainer.style.display === 'none' ? 'block' : 'none';
+    });
+
+    closeButton.addEventListener('click', () => {
+        favoritesContainer.style.display = 'none';
+    });
+});
+</script>
+
+<%- include('./partials/Footer') %>

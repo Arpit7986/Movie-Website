@@ -1,0 +1,164 @@
+
+<%- include('../partials/Boilerplate') %>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    background-color: #c9d6ff;
+    background: linear-gradient(to right, #e2e2e2, #c9d6ff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.container{
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    position: relative;
+    overflow: hidden;
+    width: 850px;
+    height: 70%;
+    max-width: 100%;
+    min-height: 480px;
+    display: flex;
+}
+
+#button{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 10px;
+    cursor: pointer;
+}
+#button1{
+    background-color: #512da8;
+    color: #fff;
+    font-size: 12px;
+    padding: 10px 45px;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px solid white;
+    position: relative;
+    left: 28%;
+}
+
+.container form{
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 40px;
+    height: 100%;
+}
+.sign_heading{
+    margin-top: 5%;
+    font-weight: 700;
+}
+#email,#password{
+    border-radius:10px;
+}
+.left-panel{
+    background-color:#512da8;
+    border-radius: 80px 0px 0px 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    padding: 20px;
+    position: relative;
+    left: 40px;
+}
+.left-first{
+    color: white;
+    font-weight: bold;
+}
+.left-second{
+    color: white;
+}
+.form-control{
+    width: 120%;
+    margin: 0px 20px 20px 0px;
+}
+.row {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+.col-5, .col-7 {
+    display: flex;
+    flex-direction: column;
+}
+.col-5 {
+    flex: 0 0 41.66667%;
+    max-width: 41.66667%;
+    padding: 20px;
+}
+.col-7 {
+    flex: 0 0 58.33333%;
+    max-width: 58.33333%;
+    height: 100%;
+}
+input{
+    margin-top: 10px;
+}
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-5">
+            <form action="/register" method="post">
+                <h1 class="sign_heading">Register</h1>
+                <br>
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input style="border-radius: 8px;" type="text" class="form-control" id="username" placeholder="Enter Username" name="username">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="Enter Email" name="email">
+                  </div>
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" class="form-control" id="password" placeholder="Enter Password" name="password">
+                </div>
+                <a href="">Already Have an Account ?</a>
+                <button id="button" class="btn btn-primary">Register</button>
+              </form>
+        </div>
+        <div class="col-7">
+            <div class="left-panel">
+                <div>
+                    <div>
+                        <h1 class="left-first">Welcome Back !</h1>
+                        <br>
+                        <p class="left-second">Enter Your Personal Details to use all</p>
+                        <p class="left-second" style="position: relative;bottom: 10px;display: flex;justify-content: center;align-items: center;">of site features</p>
+                        <button id="button1">Sign In</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

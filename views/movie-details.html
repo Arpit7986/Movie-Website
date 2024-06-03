@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Details</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .movie-poster img {
+            /* width: 100%; */
+            border-radius: 10px;
+        }
+        .movie-info {
+            margin-top: 20px;
+        }
+        .movie-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .movie-misc-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .movie-misc-info div {
+            margin-bottom: 10px;
+        }
+        .back-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .back-button:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="/movies" class="back-button">Back to Search</a>
+        <br><br><br><br>
+        <div id="movie-details" class="movie-details"></div>
+    </div>
+    <script>
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        async function fetchMovieDetails(movieId) {
+            const response = await fetch(`https://www.omdbapi.com/?i=${movieId}&apikey=4228889a`);
+            const movieDetails = await response.json();
+            displayMovieDetails(movieDetails);
+        }
+
+        function displayMovieDetails(details) {
+            const movieDetailsElement = document.getElementById('movie-details');
+            movieDetailsElement.innerHTML = `
+                <div class="movie-poster">
+                    <img src="${details.Poster !== 'N/A' ? details.Poster : 'https://via.placeholder.com/400x800'}" alt="${details.Title}">
+                </div>
+                <div class="movie-info">
+                    <h2 class="movie-title">${details.Title}</h2>
+                    <div class="movie-misc-info">
+                        <div><strong>Year:</strong> ${details.Year}</div>
+                        <br>
+                        <div><strong>Rated:</strong> ${details.Rated}</div>
+                        <div><strong>Released:</strong> ${details.Released}</div>
+                        <div><strong>Genre:</strong> ${details.Genre}</div>
+                        <div><strong>Director:</strong> ${details.Director}</div>
+                        <div><strong>Writer:</strong> ${details.Writer}</div>
+                        <div><strong>Actors:</strong> ${details.Actors}</div>
+                    </div>
+                    <p><strong>Plot:</strong> ${details.Plot}</p>
+                    <p><strong>Language:</strong> ${details.Language}</p>
+                    <p><strong>Awards:</strong> ${details.Awards}</p>
+                </div>
+            `;
+        }
+
+        const movieId = getQueryParam('id');
+        if (movieId) {
+            fetchMovieDetails(movieId);
+        }
+    </script>
+</body>
+</html>
